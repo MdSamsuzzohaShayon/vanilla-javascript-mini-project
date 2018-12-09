@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Scrolling</title>
+    <style>
+    .box1{
+        height: 100vh;
+        background: rgb(189, 185, 248);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .box1 button{
+        color: aliceblue;
+        width: 300px;
+        height: 40px;
+        background: rgb(1, 248, 1);
+        border: none;
+        font-size: 20px;
+        text-transform: uppercase;
+    }
+    .box1{
+        height: 100vh;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <button href="#" class="section1"> bring me down </button>
+    </div>
+
+    <div class="box2">
+        <a href="#" class="section2"> Thanks </a>
+        <img src="https://images.theconversation.com/files/205966/original/file-20180212-58348-7huv6f.jpeg?ixlib=rb-1.1.0&q=45&auto=format&w=926&fit=clip" alt="Dog">
+        
+    </div>
+    <script>
+        function smoothScroll(section, duration){
+            let target = document.querySelector(section);
+            let targetPosition = target.getBoundingClientRect().top;
+            let positionY = window.pageYOffset;
+            let distance = targetPosition-positionY;
+            let startTime = null;
+            // console.log('Position Y: '+ positionY);
+            // console.log('Start Position: '+ positionY);
+            // console.log('Target Position: '+targetPosition);
+            // console.log(`Distance: ${targetPosition-positionY}`);
+            function animation(currentTime){
+                if(startTime === null){
+                    startTime = currentTime;
+                }  
+                console.log('Current time : ', startTime);
+                
+                let timeElapsed = currentTime - startTime; 
+                console.log('elapsed time : ', timeElapsed);
+                let run = ease(timeElapsed, positionY, distance,duration);
+                window.scrollTo(0,run);
+                if(timeElapsed < duration) requestAnimationFrame(animation);
+            }
+            //http://gizma.com/easing/
+            function ease(t,b,c,d){
+                t /= d/2;
+                if(t<1) return c / 2 * t * t + b;
+                t--;
+                return -c / 2* (t * (t - 2) - 1) + b;
+            }
+
+
+
+            requestAnimationFrame(animation);
+        
+        }
+        
+        let btn = document.querySelector('.section1');
+        btn.addEventListener('click',function(){
+            smoothScroll('.section2',1000);
+        });
+        var dbgEnabled = Debug.debuggerEnabled;
+        console.log(dbgEnabled);
+        
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

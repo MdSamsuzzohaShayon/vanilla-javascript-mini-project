@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Clock</title>
+    <style>
+        body{
+            background: rgb(179, 179, 179);
+            padding: 0;
+            margin: 0;
+        }
+        #MyClockDisplay{
+            position: absolute;
+            width: 54rem;
+            height: 30rem;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            box-shadow: 0 0 10px 0 rgb(56, 56, 56);
+            font-size: 7rem;
+            text-align: center;
+            
+
+
+        }
+
+    </style>
+</head>
+<body>
+    <div id="MyClockDisplay"></div>
+
+    <script>
+        function showTime (){
+            let date = new Date();
+            let h = date.getHours();
+            let m = date.getMinutes();
+            let s = date.getSeconds();
+            let session = "AM";
+
+
+            if (h == 0){
+                h=12;
+            }
+            if (h>12){
+                h = h- 12;
+                session = "PM";
+            }
+            h = (h < 10) ? "0" + h : h;
+            m = (m < 10) ? "0" + m : m;
+            s = (s < 10) ? "0" + s : s;
+
+            let time = h + ":" + m + ":" + s + " " +session;
+            document.getElementById("MyClockDisplay").innerText = time;
+            document.getElementById("MyClockDisplay").textContent = time;
+            
+            setTimeout(showTime, 1000);
+        }
+        showTime();
+    </script>
+</body>
+</html>

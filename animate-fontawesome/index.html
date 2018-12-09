@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Animate icon</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+    <style>
+        #chain, #battery, #hourglass{
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="chain" class="fa"></div>
+    <br><br>
+    <div id="battery" class="fa"></div>
+    <br><br>
+    <div id="hourglass" class="fa"></div>
+    <script>
+        function breakChain(){
+            let chain = document.getElementById('chain');
+            chain.innerHTML = "&#xf0c1;"; // THIS IS FONT AWESOME UNICODE
+            setTimeout(function(){
+                chain.innerHTML = "&#xf127;";
+            },1000);
+        }
+        breakChain();
+
+
+        //ANIMATE EVERY TWO SECOND
+        setInterval(breakChain, 2000);
+
+
+        //CHARGING BATTERY
+        function chargeBattery(){
+            let battery = document.getElementById('battery');
+            battery.innerHTML = "&#xf244";
+            setTimeout(function(){
+                battery.innerHTML = "&#xf243";
+            },1000);
+            setTimeout(function(){
+                battery.innerHTML = "&#xf242";
+            },2000);
+            setTimeout(function(){
+                battery.innerHTML = "&#xf241";
+            },3000);
+            setTimeout(function(){
+                battery.innerHTML = "&#xf240";
+            },4000);
+        }
+        setInterval(chargeBattery,5000);
+        chargeBattery();
+
+
+        //HOUR GLASS ANIMATION
+        function hourGlass(){
+            let battery = document.getElementById('hourglass');
+            battery.innerHTML = "&#xf251";
+            setTimeout(function(){
+                battery.innerHTML = "&#xf252";
+            },1000);
+            setTimeout(function(){
+                battery.innerHTML = "&#xf253";
+            },2000);
+        }
+        setInterval(hourGlass,3000);
+        hourGlass();
+        
+    </script>
+</body>
+</html>
