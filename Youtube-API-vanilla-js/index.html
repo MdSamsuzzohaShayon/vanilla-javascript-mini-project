@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Youtube Data Visulization</title>
+    <link rel="stylesheet" href="/semantic.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="ui menu inverted huge violet ">
+        <div class="ui container">
+            <div class="stackable">
+                <div class="item">Youtube Data Visulization</div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <section>
+        <div class="ui container">
+            <p></p>
+            <button class="ui button large violet" id="authroize-button">Log In</button>
+            <button class="ui button large violet" id="signout-button">Sign Out</button>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div id="content">
+                <div class="ui grid">
+                    <div class="doubling two column row">
+                        <div class="column">
+                            <form class="ui form" id="channel-form">
+                                <div class="two fields">
+                                    <div class="field">
+                                        <input type="text" placeholder="Channel name" id="channel-input">
+                                    </div>
+                                    <div class="field">
+                                            <button class="ui violet button" type="submit">Get Channel Data</button>
+                                        </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="jquery.min.js"></script>
+    <script src="semantic.min.js"></script>
+</body>
+
+</html>
