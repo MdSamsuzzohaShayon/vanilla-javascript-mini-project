@@ -5,7 +5,7 @@
 gedit README.md
 
 
-write **googe conlose cloud** and Search on google [See](https://console.cloud.google.com/home/dashboard?project=test-2-228422&folder=&organizationId=)
+write **googe console cloud** and Search on google [See](https://console.cloud.google.com/home/dashboard?project=test-2-228422&folder=&organizationId=)
 
 Create A Project
 
@@ -25,13 +25,19 @@ OAuth Client ID
 
 Configure OAuth Concent Screen
 
- ![Consent Screen Setup](img/Screenshot_4.png)
-
 And Save
 
  ![Consent Screen Setup](img/Screenshot_5.png)
 
  ![Consent Screen Setup](img/Screenshot_6.png)
+
+
+
+ [Javascript Youtube API quick start](https://developers.google.com/youtube/v3/quickstart/js)
+
+ [Javascript Code sample](https://developers.google.com/youtube/v3/code_samples/code_snippets?apix=true)
+
+ 
 
  
 
