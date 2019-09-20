@@ -9,29 +9,31 @@ write **googe conlose cloud** and Search on google [See](https://console.cloud.g
 
 Create A Project
 
- ![Create project](/img/Screenshot_1.png)
+ ![Create project](img/Screenshot_1.png)
 
- ![Enable api services](/img/Screenshot_2.png)
+ ![Enable api services](img/Screenshot_2.png)
 
 API Library ->
 
- ![Youtube API](/img/Screenshot_3.png)
+ ![Youtube API](img/Screenshot_3.png)
 
 Enable it
 
- ![API Key](/img/Screenshot_4.png)
+ ![API Key](img/Screenshot_4.png)
 
 OAuth Client ID
 
 Configure OAuth Concent Screen
 
- ![Consent Screen Setup](/img/Screenshot_4.png)
+ ![Consent Screen Setup](img/Screenshot_4.png)
 
 And Save
 
- ![Consent Screen Setup](/img/Screenshot_5.png)
+ ![Consent Screen Setup](img/Screenshot_5.png)
 
- ![Consent Screen Setup](/img/Screenshot_6.png)
+ ![Consent Screen Setup](img/Screenshot_6.png)
+
+ 
 
 
 
