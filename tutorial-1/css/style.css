@@ -1,0 +1,20 @@
+.bar-chart{
+    height: 250px;
+    width: 250px;
+    display: flex;
+    justify-content: space-around;
+}
+.bar{
+    background: rgb(53, 128, 72);
+}
+
+
+.svg-chart{
+    height: 250px;
+    width: 250px;
+    border: 1px solid rgb(53, 128, 72);
+}
+
+.svg-bar{
+    fill:rgb(53, 128, 72);
+}
