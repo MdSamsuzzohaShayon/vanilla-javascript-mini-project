@@ -1,6 +1,6 @@
 import './App.css';
 import 'semantic-ui-css/semantic.min.css';
-import FaceApp from './components/FaceApp';
+import FaceApp from './components/FaceApp/FaceApp';
 import Menubar from './components/Menubar';
 import React, {Component} from 'react';
 
