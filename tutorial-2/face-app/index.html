@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face App</title>
+    <link rel="stylesheet" href="../Semantic-UI/semantic.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="ui  menu black">
+        <div class="ui container">
+            <a class=" item">
+                Home
+            </a>
+            <a class="item">
+                Messages
+            </a>
+            <a class="item">
+                Friends
+            </a>
+            <div class="right menu">
+                <div class="item">
+                    <div class="ui icon input">
+                        <input type="text" placeholder="Search...">
+                        <i class="search link icon"></i>
+                    </div>
+                </div>
+                <a class="ui item">
+                    Logout
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="ui container" style="background-color: rgba(107, 107, 240, 0.575);">
+        <br>
+        <div class="ui segment blue">
+            <div class="ui header blue massive">Face app</div>
+        </div>
+        <!-- 
+            height / 2 - stroke width / 2 = 245
+            cy = centerX - eyeOffsetX =   350
+            cx = centerX + eyeOffsetX
+        -->
+        <svg class="face-app" width="960" height="500">
+            <!-- https://www.w3schools.com/graphics/svg_circle.asp -->
+            <circle r="245" cy="250" cx="480" fill="yellow" stroke="black" stroke-width="10"></circle>
+            <circle r="50" cy="180" cx="350"></circle>
+            <circle r="50" cy="180" cx="600"></circle>
+        </svg>
+    </div>
+    <script src="../Semantic-UI/jquery.min.js"></script>
+    <script src="../Semantic-UI/semantic.min.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

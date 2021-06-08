@@ -5,3 +5,15 @@
  - D3.js is a JavaScript library for manipulating documents based on data.
  - D3 allows you to bind arbitrary data to a Document Object Model (DOM)
 
+### Places to find data visualization
+ 1. [The pudding](https://pudding.cool/)
+ 2. [The upshot](https://www.nytimes.com/international/section/upshot)
+ 3. [Reuters graphics](https://graphics.reuters.com/)
+ 4. [Fivethirtyeight](https://fivethirtyeight.com/)
+ 5. [Reddit](https://www.reddit.com/r/dataisbeautiful/)
+ 6. [Informations is beautiful](https://www.informationisbeautifulawards.com/)
+ 7. [Quartz](https://qz.com/re/data-visualization/)
+ 8. [Graphic Detail](https://www.economist.com/graphic-detail)
+ 9. [**Blockbuilder search**](https://blockbuilder.org/search)
+ 10. [Observable](https://observablehq.com/)
+
