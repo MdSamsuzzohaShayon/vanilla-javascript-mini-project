@@ -46,13 +46,13 @@ const xScale = d3
 const yScale = d3
     .scaleLinear() //Constructs a new continuous scale with the specified domain and range, the default interpolator and clamping disabled.
     .domain([0, 22]) // If domain is specified, sets the scale’s domain to the specified array of numbers. The array must contain two or more elements.
-    .range([250, 0]) // If range is specified, sets the scale’s range to the specified array of values. The array must contain two or more elements. Unlike the domain, elements in the given array need not be numbers
+    .range([250, 0]); // If range is specified, sets the scale’s range to the specified array of values. The array must contain two or more elements. Unlike the domain, elements in the given array need not be numbers
 
 
 
 
 const svgChart = d3.select('svg')
-    .classed('alert alert-primary border border-primary', true)
+    .classed('alert alert-primary border border-primary', true);
 
 
 const svgBarChart = svgChart
