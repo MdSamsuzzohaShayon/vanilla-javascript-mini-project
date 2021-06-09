@@ -1,5 +1,6 @@
 import { Container, Header } from 'semantic-ui-react';
 import React, { useState, useCallback } from 'react';
+import { csvParse } from 'd3';
 
 const csvUrl = "https://gist.githubusercontent.com/MdSamsuzzohaShayon/8a2aed8d276f038aee513dd0a5bea5f8/raw/colorsData.csv";
 const width = 960, height = 500;
@@ -14,9 +15,9 @@ const fetchText = async (url) => {
     const response = await fetch(url, { method: "GET" });
     return await response.text();
 }
-// fetchText(csvUrl).then(text => {
-//     console.log(text);
-// });
+fetchText(csvUrl).then(text => {
+    console.log(csvParse(text));
+});
 
 
 const ColorsData = () => {

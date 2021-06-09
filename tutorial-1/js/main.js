@@ -65,3 +65,11 @@ const svgBarChart = svgChart
     .attr('height', data => 200 - yScale(data.value))
     .attr('x', data => xScale(data.region))
     .attr('y', data => yScale(data.value));
+
+
+setTimeout(() => {
+    svgBarChart
+        .data(DUMMY_DATA.slice(0, 2)) // SEPECIFYNG FIRST TO ITEM
+        .exit() // Returns the exit selection: existing DOM elements in the selection for which no new datum was found.
+        .remove();
+}, 2000);
