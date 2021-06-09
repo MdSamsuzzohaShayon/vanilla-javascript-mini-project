@@ -8,3 +8,9 @@
 .label{
     fill: white;
 }
+#app{
+    width: 100%;
+}
+#data ul{
+    width: 200px;
+}
