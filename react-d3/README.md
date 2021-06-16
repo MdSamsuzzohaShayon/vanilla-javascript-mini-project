@@ -1,3 +1,9 @@
+### Install d3
+
+```
+npm install d3 /@types/d3 d3-force @types/d3-force
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

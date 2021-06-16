@@ -14,15 +14,15 @@ export class App extends Component {
     return (
       <div className="App">
         <Router>
-        <Menubar />
-        <br />
-        <br />
-        <br />
-        <Container>
-          <Segment >
-            <ProjectList />
-          </Segment>
-        </Container>
+          {/* <Menubar />
+          <br />
+          <br />
+          <br /> */}
+          <Container>
+            <Segment >
+              <ProjectList />
+            </Segment>
+          </Container>
           <Switch>
             <Route path="/faceapp">
               {/* FIRST EXAMPLE OF DRAWING A EMOJI  */}

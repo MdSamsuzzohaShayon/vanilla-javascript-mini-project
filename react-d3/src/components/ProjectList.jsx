@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 const ProjectList = () => {
     return (
         <div className="ProjectList">
-            <List animated divided verticalAlign='middle' size="big">
+            <List horizontal animated divided verticalAlign='middle' size="big">
                 <List.Item>
                     <List.Content>
                         <List.Header><Link to="/faceapp">Face App</Link></List.Header>
