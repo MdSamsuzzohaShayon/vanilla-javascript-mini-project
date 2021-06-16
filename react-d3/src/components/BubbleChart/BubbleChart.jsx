@@ -3,27 +3,30 @@ import React, { Component } from 'react';
 import * as d3 from 'd3';
 import { Header } from 'semantic-ui-react';
 import data_drg from '../../data';
+import { Container } from 'semantic-ui-react';
 
 
 class BubbleChart extends Component {
     constructor(props) {
         super(props);
         this.el = React.createRef();
+        this.width = 800;
+        this.height = 600;
     }
 
 
 
     createSVG() {
         return d3.select(this.el).append('svg')
-            .attr('width', 400)
-            .attr('height', 400)
+            .attr('width', this.width)
+            .attr('height', this.height)
             .attr('style', "border: thin red solid;");
     }
 
 
     drawChart(svg) {
         let hierarchalData = this.makeHierarchy(data_drg);
-        let packLayout = this.pack([400 - 5, 400 - 5]);
+        let packLayout = this.pack([this.width - 5, this.height - 5]);
         const root = packLayout(hierarchalData);
 
         const leaf = svg.selectAll("g")
@@ -56,8 +59,11 @@ class BubbleChart extends Component {
     render() {
         return (
             <div className="BubbleChart">
-                <Header as="h2">Bubble Chart</Header>
-                <div id="bubblechart" ref={el => (this.el = el)}></div>
+                <Container>
+
+                    <Header as="h2">Bubble Chart</Header>
+                    <div id="bubblechart" ref={el => (this.el = el)}></div>
+                </Container>
             </div>
         );
     }
