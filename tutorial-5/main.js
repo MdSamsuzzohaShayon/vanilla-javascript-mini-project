@@ -73,6 +73,7 @@ const canvas = d3.select("#network"),
   width = canvas.attr('width'),
   height = canvas.attr('height'),
   r = 5,
+  color = d3.scaleOrdinal(d3.schemeCategory20),
   ctx = canvas.node() // Returns the first (non-null) element in this selection. If the selection is empty, returns null.
   .getContext('2d'); // The HTMLCanvasElement.getContext() method returns a drawing context on the canvas
 const simulation = d3.forceSimulation() // Creates a new simulation with the specified array of nodes and no forces. If nodes is not specified, it defaults to the empty array. The simulator starts automatically;
@@ -115,12 +116,13 @@ d3.json("data.json", (err, graph) => {
     ctx.clearRect(0, 0, width, height); // The CanvasRenderingContext2D.clearRect() method of the Canvas 2D API erases the pixels in a rectangular area by setting them to transparent black.
 
     ctx.beginPath(); // The CanvasRenderingContext2D.beginPath() method of the Canvas 2D API starts a new path by emptying the list of sub-paths. Call this method when you want to create a new path.
+    ctx.globalAlpha = 0.1;
+    ctx.strokeStyle = "#aaa";
     graph.links.forEach(drawLink);
     ctx.stroke();
 
-    ctx.beginPath(); // The CanvasRenderingContext2D.beginPath() method of the Canvas 2D API starts a new path by emptying the list of sub-paths. Call this method when you want to create a new path.
+    ctx.globalAlpha = 1.0;
     graph.nodes.forEach(drawNode);
-    ctx.fill();
   }
 
 });
@@ -131,8 +133,11 @@ d3.json("data.json", (err, graph) => {
 
 
 function drawNode(d) {
+  ctx.beginPath(); // The CanvasRenderingContext2D.beginPath() method of the Canvas 2D API starts a new path by emptying the list of sub-paths. Call this method when you want to create a new path.
+  ctx.fillStyle = color(d.party);
   ctx.moveTo(d.x, d.y); // Move to the specified point ⟨x, y⟩. Equivalent to context.moveTo and SVG’s “moveto” command.
   ctx.arc(d.x, d.y, r, 0, 2 * Math.PI); // Draws a circular arc segment with the specified center ⟨x, y⟩, radius, startAngle and endAngle.
+  ctx.fill();
 }
 
 
