@@ -2,8 +2,11 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
 import { Header } from 'semantic-ui-react';
-import data_drg from '../../data';
+import duke_data from '../../data/duke_data';
+import unc_data from '../../data/unc_data';
+import wakemade_data from '../../data/wakemade_data';
 import { Container } from 'semantic-ui-react';
+import './BubbleChart.css';
 
 
 class BubbleChart extends Component {
@@ -12,6 +15,14 @@ class BubbleChart extends Component {
         this.el = React.createRef();
         this.width = 800;
         this.height = 600;
+
+        this.dukeData = duke_data.map(record => { record.name = 'duke'; return record });
+        this.uncData = unc_data.map(record => { record.name = 'unc'; return record });
+        this.wakemadeData = wakemade_data.map(record => { record.name = 'wakemade'; return record });
+
+
+
+        this.data = this.dukeData.concat(this.uncData, this.wakemadeData);
     }
 
 
@@ -25,19 +36,23 @@ class BubbleChart extends Component {
 
 
     drawChart(svg) {
-        let hierarchalData = this.makeHierarchy(data_drg);
+        let data = this.data;
+        let hierarchalData = this.makeHierarchy(data);
         let packLayout = this.pack([this.width - 5, this.height - 5]);
         const root = packLayout(hierarchalData);
 
         const leaf = svg.selectAll("g")
             .data(root.leaves()) // Returns the array of leaf nodes in traversal order; leaves are nodes with no children.
-            .join("g")
-            .attr("transform", d => `translate(${d.x + 1},${d.y + 1})`);
+            .enter()
+            .append('g')
+            .attr("transform", d => `translate(${d.x + 1},${d.y + 1})`)
+            .classed('unc', d => d.data.name === 'unc')
+            .classed('duke', d => d.data.name === 'duke')
+            .classed('wakemed', d => d.data.name === "wakemade")
 
         leaf.append("circle")
             .attr("r", d => d.r)
-            .attr("fill-opacity", 0.7)
-            .attr("fill", 'navy');
+            .attr("fill-opacity", 0.7);
     }
 
     makeHierarchy(data) {
