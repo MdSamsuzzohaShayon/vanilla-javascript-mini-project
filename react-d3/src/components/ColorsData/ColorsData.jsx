@@ -16,7 +16,7 @@ const fetchText = async (url) => {
     return await response.text();
 }
 fetchText(csvUrl).then(text => {
-    console.log(csvParse(text));
+    // console.log(csvParse(text));
 });
 
 
