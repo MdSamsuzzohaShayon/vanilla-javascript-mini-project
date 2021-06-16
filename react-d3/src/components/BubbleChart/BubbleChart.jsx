@@ -37,6 +37,10 @@ class BubbleChart extends Component {
 
     drawChart(svg) {
         let data = this.data;
+        d3.shuffle(data); // RANDOMIZE DATA 
+        data.sort((a, b)=>{
+            return a.avg_price - b.avg_price;
+        });
         let hierarchalData = this.makeHierarchy(data);
         let packLayout = this.pack([this.width - 5, this.height - 5]);
         const root = packLayout(hierarchalData);
