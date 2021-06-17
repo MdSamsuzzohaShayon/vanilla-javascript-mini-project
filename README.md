@@ -5,6 +5,17 @@
  - D3.js is a JavaScript library for manipulating documents based on data.
  - D3 allows you to bind arbitrary data to a Document Object Model (DOM)
 
+### Update simulation 
+ - __https://observablehq.com/@bryangingechen/force-update-pattern-in-observable__
+ - __https://stackoverflow.com/questions/57277281/d3-how-to-update-force-simulation-when-data-values-change__
+
+### Should watch tutorial
+ - __https://www.youtube.com/watch?v=-3WdDnuHdkQ__
+ - __https://www.youtube.com/watch?v=EiAH4O5cQTQ__
+ - __https://www.youtube.com/watch?v=HP1tOlxVYz4__
+ - __https://observablehq.com/@bryangingechen/force-update-pattern-in-observable__
+ - __https://observablehq.com/@d3/modifying-a-force-directed-graph__ [VIP]
+
 ### Places to find data visualization
  1. [The pudding](https://pudding.cool/)
  2. [The upshot](https://www.nytimes.com/international/section/upshot)
