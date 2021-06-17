@@ -19,67 +19,48 @@ const xPosition = (d, i) => i * 120 + 60;
 // RENDERING GRAPH 
 const fruitBowl = (selection, props) => {
 
+    // GROUP 
     // console.log("Fruits", fruits); 
-    const circles = selection.selectAll('circle')  // MAKE AN EMPTY SELECTION - SETTING UP ELEMENT
+    const groups = selection.selectAll('g')  // MAKE AN EMPTY SELECTION - SETTING UP ELEMENT
         .data(props.fruits, d => d.id); // CREATE DATA JOIN - IT HAS TO BE ARRAY
 
 
     // ADDING DOM ELEMENT TO DATA 
-    circles.enter()
-        .append('circle') // AN ELEMENT TO BE APPENDED FOR EACH AND EVERY ONE OF DATA ELEMENT THAT DON'T HAVE CORESPONDING DOM ELEMENT
-        .attr('cx', xPosition)
-        .attr('cy', props.height / 2)
-        .attr('r', 0)
-        .merge(circles) // UPDATE - TO CHANGE ANY ATTRIBUTE THAT NEED TO BE DECLARED AFTER MERGE -  Merges the specified iterable of iterables into a single array. This method is similar to the built-in array concat method; the only difference is that it is more convenient when you have an array of arrays.
-        .attr('fill', d => colorScale(d.type))
-        // .transition()
-        // .duration(1000)
-        .attr('cx', xPosition)
-        .attr('r', d => radiusScale(d.type));
+    const groupsEnter = groups.enter()
+        .append('g'); // AN ELEMENT TO BE APPENDED FOR EACH AND EVERY ONE OF DATA ELEMENT THAT DON'T HAVE CORESPONDING DOM ELEMENT
 
-
-
-    // UPDATE APP TO LEMON - ALTERNATIVLY WE CAN CALL MERGE
-    // circles
-    //     .attr('r', d => radiusScale(d.type))
-    //     .attr('fill', d => colorScale(d.type));
-
-
+    groupsEnter
+        .merge(groups) // UPDATE - TO CHANGE ANY ATTRIBUTE THAT NEED TO BE DECLARED AFTER MERGE -  Merges the specified iterable of iterables into a single array. This method is similar to the built-in array concat method; the only difference is that it is more convenient when you have an array of arrays.
+        .attr('transform', (d, i) => (
+            `translate(${i * 120 + 60}, ${props.height / 2})`
+        ));
 
     // REMOVE DOM ELEMENT - DATA ELEMENT IS ALREADY REMOVED FROM BELOW FUNCTION 
-    circles
+    groups
         .exit()
-        // .transition()
-        // .duration(1000)
         .attr('r', 0)
         .remove();
 
 
 
 
-
-
-
-
-
-    const text = selection.selectAll('text')  // MAKE AN EMPTY SELECTION - SETTING UP ELEMENT
-        .data(props.fruits); // CREATE DATA JOIN - IT HAS TO BE ARRAY
-
-
+    // CIRCLE 
     // ADDING DOM ELEMENT TO DATA 
-    text.enter()
+    groupsEnter
+        .append('circle') // AN ELEMENT TO BE APPENDED FOR EACH AND EVERY ONE OF DATA ELEMENT THAT DON'T HAVE CORESPONDING DOM ELEMENT
+        .merge(groups.select('circle')) // UPDATE - TO CHANGE ANY ATTRIBUTE THAT NEED TO BE DECLARED AFTER MERGE -  Merges the specified iterable of iterables into a single array. This method is similar to the built-in array concat method; the only difference is that it is more convenient when you have an array of arrays.
+        .attr('r', d => radiusScale(d.type))
+        .attr('fill', d => colorScale(d.type));
+
+
+    // TEXT 
+    groupsEnter
         .append('text') // AN ELEMENT TO BE APPENDED FOR EACH AND EVERY ONE OF DATA ELEMENT THAT DON'T HAVE CORESPONDING DOM ELEMENT
-        .attr('x', xPosition)
-        .attr('y', props.height / 2 + 80)
-        .merge(text) // UPDATE - TO CHANGE ANY ATTRIBUTE THAT NEED TO BE DECLARED AFTER MERGE -  Merges the specified iterable of iterables into a single array. This method is similar to the built-in array concat method; the only difference is that it is more convenient when you have an array of arrays.
-        .text(d => d.type);
+        .merge(groups.select('text')) // UPDATE - TO CHANGE ANY ATTRIBUTE THAT NEED TO BE DECLARED AFTER MERGE -  Merges the specified iterable of iterables into a single array. This method is similar to the built-in array concat method; the only difference is that it is more convenient when you have an array of arrays.
+        .text(d => d.type)
+        .attr('y',  80)
 
 
-    // REMOVE DOM ELEMENT - DATA ELEMENT IS ALREADY REMOVED FROM BELOW FUNCTION 
-    text
-        .exit()
-        .attr('r', 0)
-        .remove();
 }
 
 const makeFruit = type => ({ type, id: Math.random() });
