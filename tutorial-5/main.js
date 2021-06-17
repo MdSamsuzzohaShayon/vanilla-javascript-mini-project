@@ -1,5 +1,4 @@
 // https://www.youtube.com/watch?v=gda35eYXBJc&t=2s
-/*
 const graph = {
   nodes: [{
       name: "John",
@@ -68,12 +67,10 @@ const graph = {
     },
   ]
 }
-*/
 const canvas = d3.select("#network"),
   width = canvas.attr('width'),
   height = canvas.attr('height'),
   r = 5,
-  color = d3.scaleOrdinal(d3.schemeCategory20),
   ctx = canvas.node() // Returns the first (non-null) element in this selection. If the selection is empty, returns null.
   .getContext('2d'); // The HTMLCanvasElement.getContext() method returns a drawing context on the canvas
 const simulation = d3.forceSimulation() // Creates a new simulation with the specified array of nodes and no forces. If nodes is not specified, it defaults to the empty array. The simulator starts automatically;
@@ -87,7 +84,9 @@ const simulation = d3.forceSimulation() // Creates a new simulation with the spe
   .force('link', d3
     .forceLink() // Creates a new link force with the specified links and default parameters. If links is not specified, it defaults to the empty array.
     .id(d => d.name)
-  );
+  )
+  .on("tick", update); // tick - after each tick of the simulation’s internal timer. https://github.com/d3/d3-force/blob/v3.0.0/README.md#simulation_force
+
 
 
 // ASSIGN RANDOM D X POINT
@@ -97,47 +96,33 @@ const simulation = d3.forceSimulation() // Creates a new simulation with the spe
 // });
 
 
-// LOAD JSON DATA
-
-d3.json("data.json", (err, graph) => {
-  if (err) throw err;
-  simulation.nodes(graph.nodes)
-    .on("tick", update) // tick - after each tick of the simulation’s internal timer. https://github.com/d3/d3-force/blob/v3.0.0/README.md#simulation_force
-    // Each link is an object with the following properties - source, target, index
-    // any link.source or link.target property which is not an object is replaced by an object reference to the corresponding node with the given identifier.
-    // If the specified array of links is modified, such as when links are added to or removed from the simulation, this method must be called again with the new (or changed) array to notify the force of the change
-    .force('link')
-    .links(graph.links);
+simulation.nodes(graph.nodes);
+// Each link is an object with the following properties - source, target, index
+// any link.source or link.target property which is not an object is replaced by an object reference to the corresponding node with the given identifier.
+// If the specified array of links is modified, such as when links are added to or removed from the simulation, this method must be called again with the new (or changed) array to notify the force of the change
+simulation.force('link')
+  .links(graph.links)
 
 
 
-  function update() {
-    // CLEAR THE WHOLE CANVAS
-    ctx.clearRect(0, 0, width, height); // The CanvasRenderingContext2D.clearRect() method of the Canvas 2D API erases the pixels in a rectangular area by setting them to transparent black.
-
-    ctx.beginPath(); // The CanvasRenderingContext2D.beginPath() method of the Canvas 2D API starts a new path by emptying the list of sub-paths. Call this method when you want to create a new path.
-    ctx.globalAlpha = 0.1;
-    ctx.strokeStyle = "#aaa";
-    graph.links.forEach(drawLink);
-    ctx.stroke();
-
-    ctx.globalAlpha = 1.0;
-    graph.nodes.forEach(drawNode);
-  }
-
-});
+function update() {
+  // CLEAR THE WHOLE CANVAS
+  ctx.clearRect(0, 0, width, height); // The CanvasRenderingContext2D.clearRect() method of the Canvas 2D API erases the pixels in a rectangular area by setting them to transparent black.
 
 
+  ctx.beginPath(); // The CanvasRenderingContext2D.beginPath() method of the Canvas 2D API starts a new path by emptying the list of sub-paths. Call this method when you want to create a new path.
+  graph.nodes.forEach(drawNode);
+  ctx.fill();
 
 
-
+  ctx.beginPath(); // The CanvasRenderingContext2D.beginPath() method of the Canvas 2D API starts a new path by emptying the list of sub-paths. Call this method when you want to create a new path.
+  graph.links.forEach(drawLink);
+  ctx.stroke();
+}
 
 function drawNode(d) {
-  ctx.beginPath(); // The CanvasRenderingContext2D.beginPath() method of the Canvas 2D API starts a new path by emptying the list of sub-paths. Call this method when you want to create a new path.
-  ctx.fillStyle = color(d.party);
   ctx.moveTo(d.x, d.y); // Move to the specified point ⟨x, y⟩. Equivalent to context.moveTo and SVG’s “moveto” command.
   ctx.arc(d.x, d.y, r, 0, 2 * Math.PI); // Draws a circular arc segment with the specified center ⟨x, y⟩, radius, startAngle and endAngle.
-  ctx.fill();
 }
 
 
@@ -145,3 +130,8 @@ function drawLink(l) {
   ctx.moveTo(l.source.x, l.source.y); // Move to the specified point ⟨x, y⟩. Equivalent to context.moveTo and SVG’s “moveto” command.
   ctx.lineTo(l.target.x, l.target.y); // Draws a straight line from the current point to the specified point ⟨x, y⟩. Equivalent to context.lineTo and SVG’s “lineto” command.
 }
+
+
+
+
+update();
