@@ -1,7 +1,7 @@
 const svg = d3.select('svg');
 
-const width = svg.attr('width');
-const height = svg.attr('height');
+// const width = svg.attr('width');
+// const height = svg.attr('height');
 
 
 const colorScale = d3.scaleOrdinal()
@@ -14,7 +14,8 @@ const radiusScale = d3.scaleOrdinal()
 
 
 // RENDERING GRAPH 
-const render = (selection, props) => {
+const fruitBowl = (selection, props) => {
+
     // console.log("Fruits", fruits); 
     const circles = selection.selectAll('circle')  // MAKE AN EMPTY SELECTION - SETTING UP ELEMENT
         .data(props.fruits); // CREATE DATA JOIN - IT HAS TO BE ARRAY
@@ -24,7 +25,7 @@ const render = (selection, props) => {
     circles.enter()
         .append('circle') // AN ELEMENT TO BE APPENDED FOR EACH AND EVERY ONE OF DATA ELEMENT THAT DON'T HAVE CORESPONDING DOM ELEMENT
         .attr('cx', (d, i) => i * 120 + 60)
-        .attr('cy', height / 2)
+        .attr('cy', props.height / 2)
         .merge(circles) // UPDATE - TO CHANGE ANY ATTRIBUTE THAT NEED TO BE DECLARED AFTER MERGE -  Merges the specified iterable of iterables into a single array. This method is similar to the built-in array concat method; the only difference is that it is more convenient when you have an array of arrays.
         .attr('r', d => radiusScale(d.type))
         .attr('fill', d => colorScale(d.type));
@@ -44,7 +45,6 @@ const render = (selection, props) => {
         .remove();
 }
 
-
 const makeFruit = type => ({ type });
 
 
@@ -53,7 +53,14 @@ const fruits = d3
     .range(5) // Returns an array containing an arithmetic progression
     .map(() => makeFruit("Apple"));
 
-render(svg, { fruits });
+
+const render = () => {
+    fruitBowl(svg, { fruits, height: svg.attr('height') });
+}
+
+
+
+render();
 
 
 
@@ -61,12 +68,20 @@ render(svg, { fruits });
 setTimeout(() => {
     // EAT AN APPLE 
     fruits.pop();
-    render(svg, { fruits });
+    render();
 }, 1000);
 
 
 setTimeout(() => {
     // REPLACE AN APPLE WITH LEMON
     fruits[2].type = "lemon";
-    render(svg, { fruits });
+    render();
 }, 2000);
+
+
+
+setTimeout(() => {
+    // EAT AN APPLE 
+    fruits.splice(1, 1);
+    render();
+}, 3000);
