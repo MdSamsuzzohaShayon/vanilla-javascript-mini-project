@@ -26,9 +26,12 @@ const fruitBowl = (selection, props) => {
         .append('circle') // AN ELEMENT TO BE APPENDED FOR EACH AND EVERY ONE OF DATA ELEMENT THAT DON'T HAVE CORESPONDING DOM ELEMENT
         .attr('cx', (d, i) => i * 120 + 60)
         .attr('cy', props.height / 2)
+        .attr('r', 0)
         .merge(circles) // UPDATE - TO CHANGE ANY ATTRIBUTE THAT NEED TO BE DECLARED AFTER MERGE -  Merges the specified iterable of iterables into a single array. This method is similar to the built-in array concat method; the only difference is that it is more convenient when you have an array of arrays.
-        .attr('r', d => radiusScale(d.type))
-        .attr('fill', d => colorScale(d.type));
+        .attr('fill', d => colorScale(d.type))
+        .transition()
+        .duration(1000)
+        .attr('r', d => radiusScale(d.type));
 
 
 
@@ -42,6 +45,9 @@ const fruitBowl = (selection, props) => {
     // REMOVE DOM ELEMENT - DATA ELEMENT IS ALREADY REMOVED FROM BELOW FUNCTION 
     circles
         .exit()
+        .transition()
+        .duration(1000)
+        .attr('r', 0)
         .remove();
 }
 
