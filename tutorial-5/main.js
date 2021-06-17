@@ -1,3 +1,4 @@
+// VERSION4 IS WORKING 
 // https://www.youtube.com/watch?v=gda35eYXBJc&t=2s
 const graph = {
   nodes: [{
