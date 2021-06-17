@@ -13,7 +13,7 @@ const radiusScale = d3.scaleOrdinal()
     .range([50, 30]);
 
 
-const xPosition =  (d, i) => i * 120 + 60;
+const xPosition = (d, i) => i * 120 + 60;
 
 
 // RENDERING GRAPH 
@@ -32,8 +32,8 @@ const fruitBowl = (selection, props) => {
         .attr('r', 0)
         .merge(circles) // UPDATE - TO CHANGE ANY ATTRIBUTE THAT NEED TO BE DECLARED AFTER MERGE -  Merges the specified iterable of iterables into a single array. This method is similar to the built-in array concat method; the only difference is that it is more convenient when you have an array of arrays.
         .attr('fill', d => colorScale(d.type))
-        .transition()
-        .duration(1000)
+        // .transition()
+        // .duration(1000)
         .attr('cx', xPosition)
         .attr('r', d => radiusScale(d.type));
 
@@ -49,8 +49,35 @@ const fruitBowl = (selection, props) => {
     // REMOVE DOM ELEMENT - DATA ELEMENT IS ALREADY REMOVED FROM BELOW FUNCTION 
     circles
         .exit()
-        .transition()
-        .duration(1000)
+        // .transition()
+        // .duration(1000)
+        .attr('r', 0)
+        .remove();
+
+
+
+
+
+
+
+
+
+    const text = selection.selectAll('text')  // MAKE AN EMPTY SELECTION - SETTING UP ELEMENT
+        .data(props.fruits); // CREATE DATA JOIN - IT HAS TO BE ARRAY
+
+
+    // ADDING DOM ELEMENT TO DATA 
+    text.enter()
+        .append('text') // AN ELEMENT TO BE APPENDED FOR EACH AND EVERY ONE OF DATA ELEMENT THAT DON'T HAVE CORESPONDING DOM ELEMENT
+        .attr('x', xPosition)
+        .attr('y', props.height / 2 + 80)
+        .merge(text) // UPDATE - TO CHANGE ANY ATTRIBUTE THAT NEED TO BE DECLARED AFTER MERGE -  Merges the specified iterable of iterables into a single array. This method is similar to the built-in array concat method; the only difference is that it is more convenient when you have an array of arrays.
+        .text(d => d.type);
+
+
+    // REMOVE DOM ELEMENT - DATA ELEMENT IS ALREADY REMOVED FROM BELOW FUNCTION 
+    text
+        .exit()
         .attr('r', 0)
         .remove();
 }
