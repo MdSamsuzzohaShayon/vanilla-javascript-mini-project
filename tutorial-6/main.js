@@ -19,22 +19,26 @@ const render = (selection, props) => {
     const circles = selection.selectAll('circle')  // MAKE AN EMPTY SELECTION - SETTING UP ELEMENT
         .data(props.fruits); // CREATE DATA JOIN - IT HAS TO BE ARRAY
 
+
+    // ADDING DOM ELEMENT TO DATA 
     circles.enter()
         .append('circle') // AN ELEMENT TO BE APPENDED FOR EACH AND EVERY ONE OF DATA ELEMENT THAT DON'T HAVE CORESPONDING DOM ELEMENT
         .attr('cx', (d, i) => i * 120 + 60)
         .attr('cy', height / 2)
+        .merge(circles) // UPDATE - TO CHANGE ANY ATTRIBUTE THAT NEED TO BE DECLARED AFTER MERGE -  Merges the specified iterable of iterables into a single array. This method is similar to the built-in array concat method; the only difference is that it is more convenient when you have an array of arrays.
         .attr('r', d => radiusScale(d.type))
         .attr('fill', d => colorScale(d.type));
 
 
 
-    // UPDATE APP TO LEMON 
-    circles
-        .attr('r', d => radiusScale(d.type))
-        .attr('fill', d => colorScale(d.type));
+    // UPDATE APP TO LEMON - ALTERNATIVLY WE CAN CALL MERGE
+    // circles
+    //     .attr('r', d => radiusScale(d.type))
+    //     .attr('fill', d => colorScale(d.type));
 
 
 
+    // REMOVE DOM ELEMENT - DATA ELEMENT IS ALREADY REMOVED FROM BELOW FUNCTION 
     circles
         .exit()
         .remove();
