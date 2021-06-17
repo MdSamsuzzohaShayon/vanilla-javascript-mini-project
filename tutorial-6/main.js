@@ -19,6 +19,17 @@ const xPosition = (d, i) => i * 120 + 60;
 // RENDERING GRAPH 
 const fruitBowl = (selection, props) => {
 
+
+    const bowl = selection
+        .selectAll('rect')
+        .data([null])
+        .enter()
+        .append('rect')
+        .attr('y', 110)
+        .attr('width', 920)
+        .attr('height', 300)
+        .attr('rx', 300 / 2)
+
     // GROUP 
     // console.log("Fruits", fruits); 
     const groups = selection.selectAll('g')  // MAKE AN EMPTY SELECTION - SETTING UP ELEMENT
@@ -58,7 +69,7 @@ const fruitBowl = (selection, props) => {
         .append('text') // AN ELEMENT TO BE APPENDED FOR EACH AND EVERY ONE OF DATA ELEMENT THAT DON'T HAVE CORESPONDING DOM ELEMENT
         .merge(groups.select('text')) // UPDATE - TO CHANGE ANY ATTRIBUTE THAT NEED TO BE DECLARED AFTER MERGE -  Merges the specified iterable of iterables into a single array. This method is similar to the built-in array concat method; the only difference is that it is more convenient when you have an array of arrays.
         .text(d => d.type)
-        .attr('y',  80)
+        .attr('y', 80)
 
 
 }

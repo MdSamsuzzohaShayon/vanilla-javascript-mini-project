@@ -3,3 +3,6 @@ text{
     font-family: serif;
     text-anchor: middle;
 }
+rect{
+    fill: rgb(217, 217, 252);
+}
