@@ -15,6 +15,7 @@
  - __https://www.youtube.com/watch?v=HP1tOlxVYz4__
  - __https://observablehq.com/@bryangingechen/force-update-pattern-in-observable__
  - __https://observablehq.com/@d3/modifying-a-force-directed-graph__ [VIP]
+ - __https://www.youtube.com/watch?v=y7DxbW9nwmo__
 
 ### Places to find data visualization
  1. [The pudding](https://pudding.cool/)

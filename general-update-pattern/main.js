@@ -82,6 +82,8 @@ const fruits = d3
     .range(5) // Returns an array containing an arithmetic progression
     .map(() => makeFruit("Apple"));
 
+// console.log("Fruits: ", fruits); // [{id: 0.1298450222714207, type: "Apple"}]
+
 
 const render = () => {
     fruitBowl(svg, { fruits, height: svg.attr('height') });
