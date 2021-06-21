@@ -20,26 +20,41 @@ fetchText(csvUrl).then(text => {
 });
 
 
+const componentStyle = {
+    container: {
+        border: '1px solid blue'
+    },
+    svg: {
+        border: '1px solid blue'
+
+    }
+
+}
+
+
+
+
+
+
 const ColorsData = () => {
     const [mousePosition, setMousePosition] = useState(initialMousePosition);
-
 
     const handleMouseMove = useCallback(event => {
         // console.log("Mouse moved", event);
         const { clientX, clientY } = event;
-        // console.log({ clientX, clientY });
+        console.log({ clientX, clientY });
         setMousePosition({ x: clientX, y: clientY });
     }, [setMousePosition]);
 
     return (
-        <Container >
+        <Container style={componentStyle.container} >
             <br />
             <Header as="h3" variant="green">Color Data Flow</Header>
             <br />
-            <svg className="svg-chart" onMouseMove={handleMouseMove} width={width} height={height}>
+            <svg style={componentStyle.svg} className="svg-chart" onMouseMove={handleMouseMove} width={width} height={height}>
                 <circle
-                    cx={mousePosition.x}
-                    cy={mousePosition.y}
+                    cx={mousePosition.x - 122}
+                    cy={mousePosition.y - 161}
                     r={circleRadius}
                 />
             </svg>
@@ -49,3 +64,4 @@ const ColorsData = () => {
 
 export default ColorsData;
 
+// 3:35:00
