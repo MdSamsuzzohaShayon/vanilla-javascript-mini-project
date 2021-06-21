@@ -39,12 +39,13 @@ const componentStyle = {
 const ColorsData = () => {
     const [mousePosition, setMousePosition] = useState(initialMousePosition);
 
+    // Pass an inline callback and an array of dependencies
     const handleMouseMove = useCallback(event => {
         // console.log("Mouse moved", event);
         const { clientX, clientY } = event;
         console.log({ clientX, clientY });
         setMousePosition({ x: clientX, y: clientY });
-    }, [setMousePosition]);
+    }, [setMousePosition]); // PASS THE DEPENDENCIES OR SOME VARIABLES WHICH IS NEED TO RUN THIS HANDLE MOUSE MOVE
 
     return (
         <Container style={componentStyle.container} >
