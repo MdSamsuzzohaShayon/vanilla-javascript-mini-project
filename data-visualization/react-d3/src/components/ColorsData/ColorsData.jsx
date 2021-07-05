@@ -1,11 +1,11 @@
 import { Container, Message } from 'semantic-ui-react';
-import React, { useState } from 'react';
-import { csv, csvFormat } from 'd3';
+import React, { useState, useEffect } from 'react';
+import { csv } from 'd3';
 import MousePosition from './MousePosition';
+import {message} from './message';
 
 const csvUrl = "https://gist.githubusercontent.com/MdSamsuzzohaShayon/8a2aed8d276f038aee513dd0a5bea5f8/raw/colorsData.csv";
-const width = 960, height = 500;
-// const circleX = width / 2, circleY = height / 2;
+
 
 
 
@@ -26,7 +26,6 @@ const componentStyle = {
 
 
 
-const message = data => data.length + " - Rows; " + data.columns.length + " - Columns; " + Math.round(csvFormat(data).length / 1024) + " - kB";
 
 
 
@@ -35,10 +34,18 @@ const message = data => data.length + " - Rows; " + data.columns.length + " - Co
 
 const ColorsData = () => {
     const [data, setData] = useState(null);
-    csv(csvUrl).then(data => {
-        setData(data);
 
-    });
+    useEffect(() => {
+        // csv(csvUrl).then(data => {
+        //     console.log("fetching data");
+        //     setData(data);
+        // });
+
+        // DOING THE SAME THING 
+        csv(csvUrl).then(setData)
+
+    }, []); // KEEP THE DEPENDENCIES ARRAY BLANK IT WILL RENDER ONLY ONCE
+
     return (
         <Container style={componentStyle.container} >
             {/* <MousePosition /> */}
@@ -49,4 +56,4 @@ const ColorsData = () => {
 
 export default ColorsData;
 
-// 3:35:00
+// 3:19:00
